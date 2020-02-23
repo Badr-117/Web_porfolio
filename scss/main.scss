@@ -1,0 +1,385 @@
+@import "config";
+@import "menu";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  @include background;
+  background: $primary-color;
+  color: set-text-color($primary-color);
+  height: 100%;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+}
+
+//Headings
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 400;
+
+  &.lg-heading {
+    font-size: 6rem;
+  }
+
+  &.sm-heading {
+    margin-bottom: 2rem;
+    padding: 0.2rem 1rem;
+    background: rgba(lighten($primary-color, 2), 0.5);
+  }
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+header {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+}
+
+.text-secondary {
+  color: $secondary-color;
+}
+
+main {
+  padding: 4rem;
+ // height: 100%;
+  min-height: calc(100vh - 60px);
+
+  .icons {
+    margin-top: 1rem;
+    size: 0.4rem;
+    a {
+      padding: 0.4rem;
+
+      &:hover {
+        color: $secondary-color;
+        @include easeOut();
+      }
+    }
+  }
+
+  &#home {
+    overflow: hidden;
+    h1 {
+      margin-top: 20vh;
+    }
+  }
+}
+
+.about-info {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-areas:
+    "bioimage bio bio"
+    "job1 job2 job3";
+  grid-template-columns: repeat(3, 1fr);
+
+  .bio-image{
+    grid-area: bioimage;
+    margin: auto;
+    border-radius: 50%;
+    border: $secondary-color 3px solid;
+  }
+  
+  .bio{
+    grid-area: bio;
+    font-size: 1.5rem;
+  }
+  
+  .job1{
+    grid-area: job1;
+  }
+  
+  .job-2{
+    grid-area: job2;
+  }
+  
+  .job-3{
+    grid-area: job3;
+  }
+  
+  .job{
+    background: lighten($primary-color, 5);
+    padding: 0.5rem;
+    border-bottom: $secondary-color 5px solid;
+  }
+}
+
+//Work/Projects
+.projects{
+  display: grid;
+  background-size: cover;
+  grid-gap: 2.0rem;
+  grid-template-columns: repeat(3, 1fr);
+
+  .wrapper{
+
+    position: relative;
+    
+
+    img{
+      width: 100%; 
+      border: 3px #fff solid;
+    }
+
+    .content1{
+      position: absolute;
+      font-weight: bold;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 20px;
+    }
+
+    .overlay1{
+      opacity: 0;
+    }
+  }
+
+  .wrapper:hover img{
+    opacity: 0.3;
+    border-color:$secondary-color;     
+    @include easeOut;
+  }
+
+ .wrapper:hover .overlay1{
+   opacity: 1;
+   border-color:$secondary-color;     
+   @include easeOut;
+  }
+
+}
+
+// .fixed-ratio-resize {
+//   max-width: 90%;
+//   height: auto;
+//   width: auto\9;
+//   }
+
+
+//Contact Page
+.boxes{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 1rem;
+
+  div{
+    font-size: 1.3rem;
+    border: 3px #fff solid;
+    padding: 1.5rem 2.5rem;
+    margin-bottom: 3rem;
+    @include easeOut;
+
+    &:hover {
+      padding: 0.5rem 1.5rem;
+      background: $secondary-color;
+      color: set-text-color($secondary-color);
+      span{
+        color: set-text-color($secondary-color);
+      }
+    }
+  }
+}
+
+//Button Styles
+.btn{
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 0;
+  margin-bottom: 0.3rem;
+  &:hover{
+    background: $secondary-color;
+    color: set-text-color($primary-color);
+  }
+}
+
+.btn-dark{
+  @extend .btn;
+  background: darken($primary-color, 50);
+  color: #fff;
+}
+
+.btn-light{
+  @extend .btn;
+  background: lighten($primary-color, 50);
+  color: #333;
+}
+
+.btn-light1{
+  @extend .btn-light;
+}
+
+.btn-light2{
+  @extend .btn-light;
+}
+
+.btn-light3{
+  @extend .btn-light
+}
+
+#main-footer{
+  text-align: center;
+  padding: 1rem;
+  background: darken($primary-color, 10);
+  color: set-text-color($primary-color);
+  height: 60px;
+}
+
+.popup{
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.popup-content{
+  height: 350px;
+  width: 500px;
+  background: #fff; 
+  border-radius: 5px;
+  position: relative;
+  justify-content: center;
+}
+
+.gif{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.closeDemo{
+  position: absolute;
+  top:-15px;
+  right:-15px;
+  background: #fff;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  box-shadow: 6px 6px 29px -4px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+}
+
+.popup1{
+  @extend .popup;
+}
+
+.popup2{
+  @extend .popup;
+}
+
+.popup3{
+  @extend .popup;
+}
+
+.popup-content1{
+  @extend .popup-content;
+  height: 620px;
+  width: 350px;
+}
+
+.popup-content2{
+  @extend .popup-content;
+  height: 620px;
+  width: 350px;
+}
+
+.popup-content3{
+  @extend .popup-content;
+  height: 620px;
+  width: 350px;
+}
+
+.gif1{
+  @extend .gif;
+  height: 620px;
+  width: 350px;
+}
+
+.gif2{
+  @extend .gif;
+  height: 620px;
+  width: 350px;
+}
+
+.gif3{
+  @extend .gif;
+  height: 620px;
+  width: 350px;
+}
+
+.closeDemo1{
+  @extend .closeDemo;
+}
+
+.closeDemo2{
+  @extend .closeDemo;
+}
+
+.closeDemo3{
+  @extend .closeDemo;
+}
+
+
+
+
+
+
+
+///////DEMO2//////////////
+// .popup2{
+//   background: rgba(0, 0, 0, 0.6);
+//   width: 100%;
+//   height: 100%;
+//   position: absolute;
+//   top: 0;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// .popup-content2{
+//   height: 250px;
+//   width: 500px;
+//   background: #fff; 
+//   border-radius: 5px;
+//   position: relative;
+// }
+
+// .gif2{
+//   //position: absolute;
+//   width: 100%;
+//   height: 100%;
+// }
+
+// .closeDemo2{
+//   position: absolute;
+//   top:-15px;
+//   right:-15px;
+//   background: #fff;
+//   height: 20px;
+//   width: 20px;
+//   border-radius: 50%;
+//   box-shadow: 6px 6px 29px -4px rgba(0, 0, 0, 0.75);
+//   cursor: pointer;
+// }
+
+
+
+
+@import "mobile";
